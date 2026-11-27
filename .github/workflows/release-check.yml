@@ -1,0 +1,38 @@
+name: AgentCaliper release check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  release-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+      - name: Download and verify the free AgentCaliper CLI
+        run: |
+          curl -fsSL --retry 2 --max-time 60 \
+            https://github.com/sonoflin/agentcaliper-release-example/releases/download/v0.5.0/agentcaliper-check.mjs \
+            -o "$RUNNER_TEMP/agentcaliper-check.mjs"
+          echo "5bfb24d07d6b173dfb09787ba472ca5822b03cbece045056a349324fd972f0e7  $RUNNER_TEMP/agentcaliper-check.mjs" | sha256sum -c -
+      - name: Compare the public example candidate to the approved tool contract
+        run: |
+          node "$RUNNER_TEMP/agentcaliper-check.mjs" baseline mcp captures/approved.json > "$RUNNER_TEMP/baseline.json"
+          result=0
+          node "$RUNNER_TEMP/agentcaliper-check.mjs" audit mcp captures/candidate.json \
+            --baseline "$RUNNER_TEMP/baseline.json" --fail-on-change --markdown >> "$GITHUB_STEP_SUMMARY" || result=$?
+          exit "$result"
+      - name: Verify the published sample packet
+        if: ${{ !cancelled() }}
+        run: node verify-sample.mjs

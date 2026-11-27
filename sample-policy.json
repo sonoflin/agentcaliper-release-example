@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "checks": [
+    {
+      "id": "workspace-search-contract",
+      "protocol": "mcp",
+      "baseline": "captures/approved.json",
+      "candidate": "captures/proposed-change.json",
+      "blockChanges": ["Contract fields changed", "Privilege escalated"]
+    }
+  ]
+}

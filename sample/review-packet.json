@@ -1,0 +1,73 @@
+{
+  "document": {
+    "format": "agentcaliper.governance-review-packet.v1",
+    "generatedAt": "2026-11-27T20:52:49.670Z",
+    "project": "Synthetic Workspace MCP release",
+    "reviewer": "AgentCaliper demo signer",
+    "ticket": "DEMO-1",
+    "verdict": "review-required",
+    "blockedCount": 1,
+    "checks": [
+      {
+        "id": "workspace-search-contract",
+        "protocol": "mcp",
+        "passed": false,
+        "failures": [
+          "Contract fields changed · search_records",
+          "Privilege escalated · search_records"
+        ],
+        "baselineFingerprint": "72d79629038d70fdb2d4b66b6a7eb025bfd9cdd1613143378ba1833b0de28cd4",
+        "candidateFingerprint": "02c2c402ebcf4d1f3cbd0ba95318d64e5e8ca14e2522a906178e5e5b0cba08e0",
+        "compactTokens": 82,
+        "governance": {
+          "totalTools": 1,
+          "readOnlyTools": 0,
+          "mutativeTools": 1,
+          "destructiveTools": 0,
+          "unannotatedTools": 0,
+          "taskRequiredTools": 0,
+          "taskOptionalTools": 0,
+          "tools": [
+            {
+              "name": "search_records",
+              "readOnlyHint": false,
+              "destructiveHint": false,
+              "openWorldHint": null,
+              "taskSupport": null
+            }
+          ]
+        },
+        "version": "MCP",
+        "compactTokenDelta": 11,
+        "changes": [
+          {
+            "type": "Contract fields changed",
+            "label": "search_records"
+          },
+          {
+            "type": "Privilege escalated",
+            "label": "search_records"
+          }
+        ]
+      }
+    ],
+    "scope": "Offline deterministic measurement of supplied captures and optional public registry observations. Informational engineering record only; not legal advice, security certification, or runtime prompt-injection guarantee.",
+    "unmeasured": [
+      "Live runtime authorization, network latency, and endpoint uptime",
+      "Model-side prompt injection resilience or runtime data exfiltration",
+      "Legal or regulatory compliance determination (e.g., SOC 2, Workspace AI Tools Addendum)"
+    ]
+  },
+  "signature": {
+    "algorithm": "Ed25519",
+    "canonicalization": "agentcaliper-ordered-json-v1",
+    "keyId": "6e5c8b87f490d3ef5a817e886775ca404ff466bccdb726ef96443482692c8369",
+    "publicKey": {
+      "kty": "OKP",
+      "crv": "Ed25519",
+      "x": "uoTHeLGUyyNwpUF7E8n9H47rq1McM3mxT3fy3CnLDqo"
+    },
+    "sha256": "3dbca4b092e70b547d711bc4750e837d8d6938be9ca16f4e0068bdf4a192730a",
+    "value": "C_fWioGdl6y76FZsWoBIEpoJDpdxE5NUJ3tdueyiKToiI9feIwUGfofabvb9Sr6fOEWH58JpgVL44qfJq7Q1Bw"
+  }
+}

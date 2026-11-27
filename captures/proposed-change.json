@@ -1,0 +1,22 @@
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "result": {
+    "tools": [
+      {
+        "name": "search_records",
+        "description": "Search records by text.",
+        "annotations": { "readOnlyHint": false, "destructiveHint": false },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "query": { "type": "string" },
+            "workspaceId": { "type": "string" }
+          },
+          "required": ["query", "workspaceId"],
+          "additionalProperties": false
+        }
+      }
+    ]
+  }
+}
